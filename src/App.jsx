@@ -1,9 +1,20 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import PostContent from './components/PostContent'
 import './App.css'
+import { RecoilRoot } from 'recoil'
+import Dashboard from './components/Dashboard'
 
 function App() {
-
+  
   return (
-    <div></div>
+    <BrowserRouter>
+      <RecoilRoot>
+        <Routes>
+          <Route path='/post' element={<PostContent />} />
+          <Route path='/' element={<Dashboard />} />
+        </Routes>
+      </RecoilRoot>
+    </BrowserRouter>
   )
 }
 
