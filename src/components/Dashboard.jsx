@@ -15,11 +15,18 @@ const Dashboard = () => {
         GETcode(setSnippets)
     }, [])
 
+    const copyToClipboard = (snippet) => {
+        navigator.clipboard.writeText(snippet.code)
+        alert(`Copied to clipboard ${snippet.title}`)
+    }
     return (
         <div className='container pt-3 pb-5'>
             {snippets.map((snippet, index) => (
                 <div key={`${index}`}>
-                    <h1>{snippet.title}</h1>
+                    <div className='d-flex justify-content-between'>
+                        <h1>{`${snippet.title}`}</h1>
+                        <button type="button" className="btn btn-dark mb-1 float-right" onClick={() => copyToClipboard(snippet)}>Copy</button>
+                    </div>
                     <SyntaxHighlighter language="c" style={atomOneDark}>
                         {snippet.code}
                     </SyntaxHighlighter>

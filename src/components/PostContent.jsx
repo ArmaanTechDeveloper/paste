@@ -20,14 +20,13 @@ const PostContent = () => {
         setCode('')
     }
     return (
-        <div className="container">
+        <div className="container mt-3">
+            <h1>Post your code to share with everyone !</h1>
             <div className="mb-3">
-                <label className="form-label">Title</label>
-                <input className="form-control" value={title} onChange={(e) => handleTitleChange(e)}/>
+                <input placeholder="Title" className="form-control" value={title} onChange={(e) => handleTitleChange(e)}/>
             </div>
             <div className="mb-3">
-                <label className="form-label">Code</label>
-                <textarea className="form-control" rows="10" value={code} onChange={(e) => handleCodeChange(e)}></textarea>
+                <textarea placeholder="Your code here !" className="form-control" rows="10" value={code} onChange={(e) => handleCodeChange(e)}></textarea>
             </div>
 
             <button type="button" className="btn btn-dark" onClick={handleSubmit}>Submit</button>
