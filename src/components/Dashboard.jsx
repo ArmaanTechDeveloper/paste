@@ -1,24 +1,27 @@
 import React, { useEffect } from 'react'
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { codeSnippets } from '../atoms';
 import { GETcode } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { loader } from '../atoms';
 
 const Dashboard = () => {
 
     const [snippets, setSnippets] = useRecoilState(codeSnippets)
+    const setLoading = useSetRecoilState(loader)
     const navigate = useNavigate()
 
     useEffect(() => {
-        GETcode(setSnippets)
+        GETcode(setSnippets , setLoading)
     }, [])
 
     const copyToClipboard = (snippet) => {
         navigator.clipboard.writeText(snippet.code)
         alert(`Copied to clipboard ${snippet.title}`)
     }
+    
     return (
         <div className='container pt-3 pb-5'>
             {snippets.map((snippet, index) => (

@@ -13,7 +13,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const db = getFirestore(app)
+export const db = getFirestore(app)
 
 export const POSTcode = async (title , code) => {
     await addDoc(collection(db , "codes"), {
@@ -24,7 +24,8 @@ export const POSTcode = async (title , code) => {
     console.log(`Document written successfully at ${Date.now()}`)
 }
 
-export const GETcode = async(setData) => {
+export const GETcode = async(setData , setLoading) => {
+    setLoading(true)
     const querySnapshot = await getDocs(collection(db , "codes"))
     const data = []
     querySnapshot.forEach((doc) => {
@@ -32,4 +33,5 @@ export const GETcode = async(setData) => {
     })
 
     setData(data)
+    setLoading(false)
 }

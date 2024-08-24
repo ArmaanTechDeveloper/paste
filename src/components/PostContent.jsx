@@ -1,11 +1,15 @@
 import { useState } from "react"
 import { POSTcode } from "../firebase"
 import { useNavigate } from "react-router-dom"
+import { useSetRecoilState } from "recoil"
+import { loader } from "../atoms"
 
 const PostContent = () => {
 
     const [title , setTitle] = useState('')
     const [code , setCode] = useState('')
+    const setLoading = useSetRecoilState(loader)
+
     const navigate = useNavigate()
 
     const handleTitleChange = (e) => {
@@ -15,9 +19,11 @@ const PostContent = () => {
         setCode(e.target.value)
     }
     const handleSubmit = async () => {
+        setLoading(true)
         await POSTcode(title , code)
         setTitle('')
         setCode('')
+        setLoading(false)
     }
     return (
         <div className="container mt-3">

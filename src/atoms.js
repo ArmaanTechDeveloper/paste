@@ -4,3 +4,8 @@ export const codeSnippets = atom({
     key: 'codeSnippets',
     default: []
 })
+
+export const loader = atom({
+    key: 'loader',
+    default: false
+})
