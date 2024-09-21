@@ -7,3 +7,41 @@
     justify-content: center;
     align-items: center;
 }
+
+.modal {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(49 , 49 , 49 , 0.8);
+    top: 0;
+    left: 0;
+}
+
+.modal div {
+    height: 70%;
+    background-color: rgb(40 , 44 , 52);
+    color: white;
+    padding: 0 0.5rem;
+}
+
+.modal div .close-btn {
+    text-align: right;
+    width: 100%;
+    height: auto;
+}
+
+.modal div .close-btn button {
+    cursor: pointer;
+}
+
+.modal-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-input {
+    margin: 0.25rem 0;
+}

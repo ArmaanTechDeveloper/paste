@@ -4,6 +4,7 @@ import { useSetRecoilState } from "recoil"
 import { loader } from "../atoms"
 
 import { postCode } from "../supabase"
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const PostContent = () => {
 
@@ -37,7 +38,7 @@ const PostContent = () => {
             </div>
 
             <button type="button" className="btn btn-dark" onClick={handleSubmit}>Submit</button>
-            <button type="button" className="btn btn-primary ms-3" onClick={() => navigate('/')}>Go to /</button>
+            <button type="button" className="btn btn-primary ms-3" onClick={() => navigate('/')}><ArrowBackIcon /> Go to dashboard</button>
         </div>
     )
 }

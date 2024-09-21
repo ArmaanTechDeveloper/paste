@@ -31,8 +31,21 @@ const postCode = async (title , code) => {
     console.log('code posted successfully')
 }
 
+const deleteRow = async (id) => {
+    const {error} = await supabase.from("snippets").delete().eq('id' , id)
+
+    if(error) {
+        console.log('Error deleting the row');
+        return;
+    }
+
+    console.log('Deletion Successfull !!')
+
+}
+
 export {
     supabase,
     fetchCodes,
-    postCode
+    postCode,
+    deleteRow
 }
