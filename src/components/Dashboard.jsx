@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { codeSnippets } from '../atoms';
-import { GETcode } from '../firebase';
+import { DELETEdoc, GETcode } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { loader } from '../atoms';
+import { fetchCodes } from '../supabase';
 
 const Dashboard = () => {
 
@@ -14,24 +15,27 @@ const Dashboard = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        GETcode(setSnippets , setLoading)
+        fetchCodes(setSnippets , setLoading)
     }, [])
 
     const copyToClipboard = (snippet) => {
-        navigator.clipboard.writeText(snippet.code)
+        navigator.clipboard.writeText(snippet.snippet)
         alert(`Copied to clipboard ${snippet.title}`)
     }
     
     return (
         <div className='container pt-3 pb-5'>
-            {snippets.map((snippet, index) => (
-                <div key={`${index}`}>
+            {snippets.map((snippet) => (
+                <div key={`${snippet.id}`}>
                     <div className='d-flex justify-content-between'>
                         <h1>{`${snippet.title}`}</h1>
-                        <button type="button" className="btn btn-dark mb-1 float-right" onClick={() => copyToClipboard(snippet)}>Copy</button>
+                        <div>
+                            {/* <button type="button" className="btn btn-danger mb-1 float-right mx-1" onClick={() => DELETEdoc(snippet.id , setSnippets , setLoading)}>delete</button> */}
+                            <button type="button" className="btn btn-dark mb-1 float-right" onClick={() => copyToClipboard(snippet)}>Copy</button>
+                        </div>
                     </div>
                     <SyntaxHighlighter language="c" style={atomOneDark}>
-                        {snippet.code}
+                        {snippet.snippet}
                     </SyntaxHighlighter>
                 </div>
             ))}

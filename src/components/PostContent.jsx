@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom"
 import { useSetRecoilState } from "recoil"
 import { loader } from "../atoms"
 
+import { postCode } from "../supabase"
+
 const PostContent = () => {
 
     const [title , setTitle] = useState('')
@@ -20,7 +22,7 @@ const PostContent = () => {
     }
     const handleSubmit = async () => {
         setLoading(true)
-        await POSTcode(title , code)
+        await postCode(title , code)
         setTitle('')
         setCode('')
         setLoading(false)

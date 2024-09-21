@@ -1,6 +1,6 @@
 
 import { initializeApp } from "firebase/app";
-import { addDoc, collection, getDocs, getFirestore, orderBy, query, Timestamp } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, getDocs, getFirestore, orderBy, query, Timestamp, doc } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBcG3i4nt_Q0tPAKXRTX7n7VXETpslG49Q",
@@ -29,9 +29,20 @@ export const GETcode = async(setData , setLoading) => {
     const querySnapshot = await getDocs(collection(db , "codes"))
     const data = []
     querySnapshot.forEach((doc) => {
-        data.push(doc.data())
+        data.push({id: doc.id , ...doc.data()})
     })
 
     setData(data)
     setLoading(false)
+}
+
+export const DELETEdoc = async(id , setData , setLoading) => {
+    setLoading(true)
+    const docRef = doc(db , "codes" , id)
+
+    await deleteDoc(docRef)
+
+    setLoading(false)
+    GETcode(setData , setLoading)
+
 }
