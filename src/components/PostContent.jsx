@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { POSTcode } from "../firebase"
 import { useNavigate } from "react-router-dom"
 import { useSetRecoilState } from "recoil"
 import { loader } from "../atoms"

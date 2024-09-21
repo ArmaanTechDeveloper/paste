@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { codeSnippets } from '../atoms';
-import { DELETEdoc, GETcode } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
