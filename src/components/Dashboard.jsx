@@ -64,7 +64,7 @@ const Dashboard = () => {
             </Modal>
         }
         <div className='container pt-3 pb-5'>
-            {snippets.map((snippet) => (
+            {snippets.map((snippet) => (snippet.view && 
                 <div key={`${snippet.id}`}>
                     <div className='d-flex justify-content-between'>
                         <h1>{`${snippet.title}`}</h1>

@@ -21,7 +21,7 @@ const fetchCodes = async (setSnippets , setLoading) => {
 }
 
 const postCode = async (title , code) => {
-    const {error} = await supabase.from("snippets").insert({title: title , snippet: code})
+    const {error} = await supabase.from("snippets").insert({title: title , snippet: code , view: true})
 
     if(error){
         console.log('Error posting to the table');
