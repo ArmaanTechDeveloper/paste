@@ -64,6 +64,9 @@ const Dashboard = () => {
             </Modal>
         }
         <div className='container pt-3 pb-5'>
+            <div className='py-2'>
+                <button type="button" className="btn btn-dark" onClick={() => navigate('/post')}><ExitToAppIcon /> Post Data</button>
+            </div>
             {snippets.map((snippet) => (snippet.view && 
                 <div key={`${snippet.id}`}>
                     <div className='d-flex justify-content-between'>
@@ -78,7 +81,7 @@ const Dashboard = () => {
                     </SyntaxHighlighter>
                 </div>
             ))}
-            <button type="button" className="btn btn-dark" onClick={() => navigate('/post')}><ExitToAppIcon /> Post Data</button>
+            
         </div>
         </>
     )
